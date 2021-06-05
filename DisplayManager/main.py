@@ -13,7 +13,7 @@ import time
 import pi3d
 import config
 
-from viewer import Viewer
+from viewer import ViewerPi3D
 from manager import Manager
 
 
