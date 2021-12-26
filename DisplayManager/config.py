@@ -2,11 +2,13 @@
 on the command line when the program is run, or you can alter the default values
 here
 """
+
+
 import argparse
 
-""" function needed to convert str representation of bool values
-"""
+
 def str_to_bool(x):
+    """ function needed to convert str representation of bool values"""
     if len(x) == 0:
         return True # i.e. just arg will set to true
     return not (x.lower()[0] in ('0', 'f', 'n')) # i.e. 0,False,false,No,n
@@ -35,7 +37,7 @@ parse.add_argument("-d", "--verbose",       default=False, type=str_to_bool, hel
 parse.add_argument("-e", "--edge_alpha",    default=0.5, type=float, help="background colour at edge. 1.0 would show reflection of image")
 parse.add_argument("-f", "--fps",           default=20.0, type=float)
 parse.add_argument("-g", "--background",    default=(0.2, 0.2, 0.3, 1.0), type=str_to_tuple, help="RGBA to fill edges when fitting")
-parse.add_argument("-i", "--no_files_img",  default="/home/diehl/Downloads/pi3d_demos/PictureFrame2020img.jpg", help="image to show if none selected")
+parse.add_argument("-i", "--no_files_img",  default="../pi3d_resources/PictureFrame2020img.jpg", help="image to show if none selected")
 parse.add_argument("-j", "--blend_type",    default="blend", choices=["blend", "burn", "bump"], help="type of blend the shader can do")
 parse.add_argument("-k", "--keyboard",      default=False, type=str_to_bool, help="set to False when running headless to avoid curses error. True for debugging")
 parse.add_argument("-m", "--use_mqtt",      default=False)
@@ -44,9 +46,9 @@ parse.add_argument(      "--mqtt_port",     default=1883, type=int)
 parse.add_argument(      "--mqtt_login",    default="")
 parse.add_argument(      "--mqtt_password", default="")
 parse.add_argument("-n", "--recent_n",      default=0, type=int, help="when shuffling keep n most recent ones to play before the rest")
-parse.add_argument("-o", "--font_file",     default="/home/diehl/Downloads/pi3d_demos/fonts/NotoSans-Regular.ttf")
+parse.add_argument("-o", "--font_file",     default="../pi3d_resources/fonts/NotoSans-Regular.ttf")
 parse.add_argument("-p", "--pic_dir",       default="/home/diehl/Pictures")
-parse.add_argument("-q", "--shader",        default="/home/diehl/Downloads/pi3d_demos/shaders/blend_new")
+parse.add_argument("-q", "--shader",        default="../pi3d_resources/shaders/blend_new")
 parse.add_argument("-r", "--reshuffle_num", default=1, type=int, help="times through before reshuffling")
 parse.add_argument("-s", "--show_text_tm",  default=10.0, type=float, help="time to show text over the image")
 parse.add_argument(      "--show_text_fm",  default="%B %d, %Y", help="format to show date over the image")
@@ -63,9 +65,6 @@ parse.add_argument("-z", "--blur_zoom",     default=1.0, type=float, help="must 
 parse.add_argument(      "--auto_resize",   default=True, type=str_to_bool, help="set this to false if you want to use 4K resolution on Raspberry Pi 4. You should ensure your images are the correct size for the display")
 parse.add_argument(      "--delay_exif",    default=True, type=str_to_bool, help="set this to false if there are problems with date filtering - it will take a long time for initial loading if there are many images.")
 parse.add_argument(      "--locale",        default="en_US.utf8", help="set the locale")
-parse.add_argument(      "--load_geoloc",   default=False, type=str_to_bool, help="load geolocation code")
-parse.add_argument(      "--geo_key",       default="picture_frame_hello", help="set the Nominatim key - change to something unique to you")
-parse.add_argument(      "--geo_path",      default="/home/pi/PictureFrame2020gpsdata.txt", help="set the local file to store data from geopy - ignored if --load_geoloc is not true")
 parse.add_argument(      "--display_x",     default=0, type=int, help="offset from left of screen (can be negative)")
 parse.add_argument(      "--display_y",     default=0, type=int, help="offset from top of screen (can be negative)")
 parse.add_argument(      "--display_w",     default=None, type=int, help="width of display surface (None will use max returned by hardware)")
@@ -111,9 +110,6 @@ BLUR_ZOOM = args.blur_zoom
 AUTO_RESIZE = args.auto_resize
 DELAY_EXIF = args.delay_exif
 LOCALE = args.locale
-LOAD_GEOLOC = args.load_geoloc
-GEO_KEY = args.geo_key
-GEO_PATH = args.geo_path
 DISPLAY_X = args.display_x
 DISPLAY_Y = args.display_y
 DISPLAY_W = args.display_w

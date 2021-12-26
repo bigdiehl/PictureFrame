@@ -15,8 +15,8 @@ import itertools
 import bisect
 import logging
 
-config.PIC_DIRS = [r'/home/diehl/Pictures', r'/media/diehl/Elements']
-#config.PIC_DIRS = [r'/home/diehl/Pictures']
+#config.PIC_DIRS = [r'/home/diehl/Pictures', r'/media/diehl/Elements']
+config.PIC_DIRS = [r'/home/diehl/Pictures']
 
 from database import *
 
