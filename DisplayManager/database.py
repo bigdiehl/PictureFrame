@@ -206,6 +206,7 @@ class Image_Directory():
             self.update_time = time.time()
         else:
             raise ValueError("Not a directory: " + directory)
+            # TODO - Provide exception handling for this case
         
     def get_image_tuple(self, image_name, path):
         """Given an image name, produce a tuple containing 
@@ -214,14 +215,14 @@ class Image_Directory():
 
         # Default values
         date = float("nan")
-        orientation = float("nan")
+        orientation = 1 # No orientation fix needed
 
         # EXIF data only for JPEG images
         ext = os.path.splitext(image_name)[1].lower()
         if ext == ".jpg" or ext == '.jpeg':
             try:
-                im = Image.open(os.path.join(path, image_name))
-                exif_data = im._getexif()
+                im = None #Image.open(os.path.join(path, image_name))
+                exif_data = None# im._getexif()
 
                 if exif_data is not None:
                     if EXIF_DATE in exif_data:

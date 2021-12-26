@@ -9,12 +9,13 @@ Created on Mon Jan 25 21:42:05 2021
 import logging
 import threading
 import time
-
-import pi3d
+import os, sys
 import config
 
 from viewer import ViewerPi3D
 from manager import Manager
+
+import logging
 
 
 def check_keyboard(kbd):
@@ -36,10 +37,34 @@ def check_keyboard(kbd):
 if __name__ == "__main__":
     
     try:
+
+        if 1:
+            os.remove("frame.log")
+
+        # Set up logging - Basic format to console and more detailed format to file
+        rootLogger = logging.getLogger()
+        rootLogger.setLevel(logging.INFO)
+
+        consoleLogFormatter = logging.Formatter("[%(levelname)-5.5s]  %(message)s")
+        consoleHandler = logging.StreamHandler()
+        consoleHandler.setFormatter(consoleLogFormatter)
+        rootLogger.addHandler(consoleHandler)
+
+        fileLogFormatter = logging.Formatter("%(asctime)s [%(threadName)-12.12s] [%(levelname)-5.5s]  %(message)s")
+        fileHandler = logging.FileHandler("frame.log")
+        fileHandler.setFormatter(fileLogFormatter)
+        rootLogger.addHandler(fileHandler)
+        
+
+        logging.info("Main start...")
         
         manager = Manager()
         manager_thread = threading.Thread(target=manager.run)
         manager_thread.start()
+
+        sensor = LightSensor()
+        sensor_thread = threading.Thread(target=sensor.run)
+        sensor_thread.start()
 
         viewer = ViewerPi3D(manager)
         
@@ -62,9 +87,11 @@ if __name__ == "__main__":
 
         viewer.alive = False
         manager.alive = False
+        sensor.alive = False
         
         manager_thread.join()
-
+        sensor_thread.join()
+        
 
     """Features:
     * Can select which pictures you want from web interface

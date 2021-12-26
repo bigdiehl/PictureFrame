@@ -202,25 +202,10 @@ class ViewerPi3D(ViewerBase):
     def get_next_pic(self):
         """Retrieve the next picture's path from the manager and prepare it for
         display"""
-        pic_info = self.manager.get_next_pic()
-
-        fname = pic_info['path']
-        orientation = pic_info['orientation']
-
-        # Get pi3d texture - i.e. a texture object derived from the given
-        # image file. Returns None if image cannot be loaded. 
-        im = None
+        im, orientation = self.manager.get_next_pic()
         tex = None
 
-        # TODO - Figure out some better error handling than this
         try:
-            # Create image object from image file
-            ext = os.path.splitext(fname)[1].lower()
-            if ext in ('.heif','.heic'):
-                im = self.convert_heif(fname)
-            else:
-                im = Image.open(fname)
-
             # Resize image to fit display? TODO - Figure out what this does...
             (w, h) = im.size
             max_dimension = MAX_SIZE # TODO changing MAX_SIZE causes serious crash on linux laptop!
@@ -349,29 +334,7 @@ class ViewerPi3D(ViewerBase):
         """Clean up any resources on Viewer exit"""
         self.DISPLAY.destroy()
 
-
-
-
-
-
-
-
     
-
-    @staticmethod
-    def convert_heif(fname):
-        try:
-            import pyheif
-            from PIL import Image
-
-            heif_file = pyheif.read(fname)
-            image = Image.frombytes(heif_file.mode, heif_file.size, heif_file.data,
-                                    "raw", heif_file.mode, heif_file.stride)
-            return image
-        except Exception as e:
-            print("have you installed pyheif?")
-            print(e)
-            return None
 
     @staticmethod
     def get_exif_info(file_path_name, im=None):
