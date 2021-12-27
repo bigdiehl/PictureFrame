@@ -1,22 +1,15 @@
 
 import config
 import time
-
 import math
 import numpy as np 
-
 import random
-
 import os
 from PIL import Image, ExifTags, ImageFilter # these are needed for getting exif data from images
 from collections import namedtuple
-
 import itertools
 import bisect
 import logging
-
-#config.PIC_DIRS = [r'/home/diehl/Pictures', r'/media/diehl/Elements']
-config.PIC_DIRS = [r'/home/diehl/Pictures']
 
 from database import *
 

@@ -16,7 +16,7 @@ from viewer import ViewerPi3D
 from manager import Manager
 
 import logging
-
+from sensors import LightSensor
 
 def check_keyboard(kbd):
     """Check for and respond to keyboard events. Used primarily 
@@ -37,11 +37,26 @@ def check_keyboard(kbd):
 if __name__ == "__main__":
     
     try:
+        config.PIC_DIRS = []
 
-        if 1:
-            os.remove("frame.log")
+        # Parse config file and extract parameters
+        config_file = 'picframe.config'
+        with open(config_file) as f:
+            for line in f.readlines():
+                line = line.strip()
+                if len(line) > 0 and line[0] != '#':
+                    key,value = line.split("=")
+                    if key == 'PIC_DIRS':
+                        config.PIC_DIRS = [x for x in value.split(';') if len(x) > 0]
+                        
+                        
+        print("PIC DIRS = ", config.PIC_DIRS)
 
         # Set up logging - Basic format to console and more detailed format to file
+        log_path = r'picframe.log'
+        if os.path.exists(log_path):
+            os.remove(log_path)
+            
         rootLogger = logging.getLogger()
         rootLogger.setLevel(logging.INFO)
 
@@ -51,7 +66,7 @@ if __name__ == "__main__":
         rootLogger.addHandler(consoleHandler)
 
         fileLogFormatter = logging.Formatter("%(asctime)s [%(threadName)-12.12s] [%(levelname)-5.5s]  %(message)s")
-        fileHandler = logging.FileHandler("frame.log")
+        fileHandler = logging.FileHandler(log_path)
         fileHandler.setFormatter(fileLogFormatter)
         rootLogger.addHandler(fileHandler)
         
