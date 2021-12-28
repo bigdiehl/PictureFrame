@@ -8,6 +8,7 @@ import os
 from PIL import Image, ExifTags, ImageFilter # these are needed for getting exif data from images
 from pi3d.Texture import MAX_SIZE
 
+import database
 # Supporting Enums
 
 class view_state:
@@ -21,6 +22,7 @@ class view_signal:
     PAUSE = 1
     TRANSITION_NOW = 2
 
+viewer_signal = None
 
 class ViewerBase:
     """Base class for picture frame viewer. Derived class can implement specific 
@@ -30,16 +32,27 @@ class ViewerBase:
         self.manager = manager #Handle to manager instance
 
         self.alive = True
+        self.sleep = False
+        self.sleep_now = False
         self.state = view_state.INIT
         self.last_state = None
 
         self.t_next_frame = 0
         self.t_next_pic = 0
+        
+    def kill(self):
+        self.alive = False
+        
+    def go_to_sleep(self):
+        self.sleep_now = True
+        
+    def wake_up(self):
+        self.sleep = False
+        self.sleep_now = False
 
     def run(self):
         """Main event loop. Implements a state machine. """
         
-        index = 1
         next_pic_ready = False
         
         if self.state == view_state.INIT:
@@ -54,20 +67,23 @@ class ViewerBase:
             t = time.time()
         
             # Check signal from other thread/processes.
-            signal = None #Temporary TODO clean this up
-            if 0: #Signal is received
-                if signal == view_signal.PLAY:
+            global viewer_signal
+            if viewer_signal is not None: #Signal is received
+                if viewer_signal == view_signal.PLAY:
                     self.state = self.last_state
 
-                elif signal == view_signal.PAUSE:
+                elif viewer_signal == view_signal.PAUSE:
                     self.last_state = self.state
                     self.state = view_state.PAUSED
 
-                elif signal == view_signal.TRANSITION_NOW:
+                elif viewer_signal == view_signal.TRANSITION_NOW:
+                    print("Transitioning now...")
                     self.get_next_pic()
                     self.display_now()
                     self.state = view_state.DISPLAY
                     self.t_next_pic = t + config.TIME_DELAY
+                    
+                viewer_signal = None
                 
 
             if self.state == view_state.DISPLAY:
@@ -100,7 +116,6 @@ class ViewerBase:
                         #print("Transition time: ", time.time() - self.start_time)
                         next_pic_ready = False
                         self.t_next_pic = t + config.TIME_DELAY
-                        index += 1
                     
             elif self.state == view_state.PAUSED:
                 pass
@@ -109,13 +124,18 @@ class ViewerBase:
 
             # Sleep to reduce CPU load? Maybe make this more sophisticated?
             # Sleep different depending on the state?
-            self.sleep = True
-            if self.sleep:
+            if 1:
                 if self.state == view_state.TRANSITION:
                     time.sleep(1.0/config.FPS/2) 
                 else:
-                    time.sleep(0.1) 
-                self.sleep = False
+                    time.sleep(0.1)
+                    
+            while self.sleep:
+                time.sleep(0.1)
+                
+            # Ensures that we will run at least one complete loop before sleeping. 
+            if self.sleep_now:
+                self.sleep = True
 
         #EndWhilemanager
 
@@ -166,7 +186,7 @@ class ViewerPi3D(ViewerBase):
         # pi3d main display elements
         self.DISPLAY = pi3d.Display.create(x=config.DISPLAY_X, y=config.DISPLAY_Y,
               w=config.DISPLAY_W, h=config.DISPLAY_H, frames_per_second=config.FPS,
-              display_config=pi3d.DISPLAY_CONFIG_HIDE_CURSOR, background=config.BACKGROUND)
+              layer=0, display_config=pi3d.DISPLAY_CONFIG_HIDE_CURSOR, background=config.BACKGROUND)
         self.CAMERA = pi3d.Camera(is_3d=False)
 
         self.shader = pi3d.Shader(config.SHADER)
@@ -199,11 +219,18 @@ class ViewerPi3D(ViewerBase):
         self.sfg = None
         self.sbg = None
 
+    def create_display(self):
+        self.DISPLAY = pi3d.Display.create(x=config.DISPLAY_X, y=config.DISPLAY_Y,
+              w=config.DISPLAY_W, h=config.DISPLAY_H, frames_per_second=config.FPS,
+              display_config=pi3d.DISPLAY_CONFIG_HIDE_CURSOR, background=config.BACKGROUND)
+        
     def get_next_pic(self):
         """Retrieve the next picture's path from the manager and prepare it for
         display"""
         im, orientation = self.manager.get_next_pic()
         tex = None
+        
+        orientation = self.get_orientation(im)
 
         try:
             # Resize image to fit display? TODO - Figure out what this does...
@@ -299,7 +326,9 @@ class ViewerPi3D(ViewerBase):
 
     def display_now(self):
         """Force a change of pictures now (i.e. skip transition)"""
-        raise ValueError("Method not implemented yet")
+        self.start_transition()
+        self.alpha=1.0
+        self.step_transition()
 
     def start_transition(self):
         """Prep transition variables to start new transition"""
@@ -334,8 +363,17 @@ class ViewerPi3D(ViewerBase):
         """Clean up any resources on Viewer exit"""
         self.DISPLAY.destroy()
 
-    
-
+    def get_orientation(self, im):
+        orientation = 1
+        try:
+            exif_data = im._getexif()
+            if database.EXIF_ORIENTATION in exif_data:
+                orientation = int(exif_data[database.EXIF_ORIENTATION])
+        except Exception as e:
+            print(e)
+        
+        return orientation
+                
     @staticmethod
     def get_exif_info(file_path_name, im=None):
         dt = os.path.getmtime(file_path_name) # so use file last modified date

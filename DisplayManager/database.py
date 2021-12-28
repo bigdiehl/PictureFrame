@@ -112,18 +112,20 @@ class Image_Database(dict):
         and add it to the dict. If a directory has no images, Image_Directory 
         object will have zero length images list"""
 
-        # Make sure we have been given a real directory
-        if os.path.isdir(directory):
-            img_dir = Image_Directory(directory)
+        # Skip over ignore directory
+        if 'ignore' not in directory.lower():
+            # Make sure we have been given a real directory
+            if os.path.isdir(directory):
+                img_dir = Image_Directory(directory)
 
-            # Only add the directory to the database if it has images in it (???)
-            #if img_dir.images_present:
+                # Only add the directory to the database if it has images in it (???)
+                #if img_dir.images_present:
 
-            # To ensure that all keys are unique, use the full path as the key
-            self.__setitem__(directory, img_dir)
-        else:
-            #TODO - Work on better error handling than this
-            raise ValueError("Not a directory: " + directory)
+                # To ensure that all keys are unique, use the full path as the key
+                self.__setitem__(directory, img_dir)
+            else:
+                #TODO - Work on better error handling than this
+                raise ValueError("Not a directory: " + directory)
 
     def remove_directory(self, directory):
         """Remove the given directory and all child directories from the database"""
@@ -208,6 +210,8 @@ class Image_Directory():
             raise ValueError("Not a directory: " + directory)
             # TODO - Provide exception handling for this case
         
+    # TODO - This may not be feasible. At least not as the way we have it. Opening every image and
+    # getting the metadata on startup is not great. Super slow. 
     def get_image_tuple(self, image_name, path):
         """Given an image name, produce a tuple containing 
         (Filename, Rotation, Date)

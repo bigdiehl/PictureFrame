@@ -74,6 +74,7 @@ class Manager:
         self.counter = 0
         self.pic_idxs = []
         self.now_imgs = []
+        self.pic_queue = []
         self.return_playlist = None
         self.return_pic = None
         self.return_play_method = None
@@ -99,6 +100,9 @@ class Manager:
         self.ready = True # TODO - move this to init function
         while self.alive:
             time.sleep(0.5)
+            
+    def enqueue_pic(self, filename):
+        self.pic_queue.append(filename)
 
     def get_next_pic(self):
         """Main method called by Viewer to get the next picture to be played. 
@@ -112,9 +116,16 @@ class Manager:
 
         while time.time() < t_timeout:
             try:
-                self.play_method()
-                img_tuple = self.current_playlist.images[self.current_pic]
-                pic_path = os.path.join(self.current_playlist.path, img_tuple.fname)
+                # If we have pictures in our local queue, return those first
+                if len(self.pic_queue) > 0:
+                    pic_path = self.pic_queue[0]
+                    self.pic_queue = self.pic_queue[1:]
+                    img_tuple = Img_Tup(pic_path, 1, 0)
+                else: 
+                    # Otherwise, run the chosen play method to find the next image
+                    self.play_method()
+                    img_tuple = self.current_playlist.images[self.current_pic]
+                    pic_path = os.path.join(self.current_playlist.path, img_tuple.fname)
 
                 if os.path.isfile(pic_path):
                     ext = os.path.splitext(pic_path)[1].lower()
@@ -123,7 +134,7 @@ class Manager:
                     else:
                         im = Image.open(pic_path)
 
-                    logging.info("Now playing: {}, pic: {} ({})".format(self.current_playlist.path, 
+                    logging.info("Next playing: {}, pic: {} ({})".format(self.current_playlist.path, 
                         img_tuple.fname, self.current_pic ))
 
                     return im, img_tuple.orientation
