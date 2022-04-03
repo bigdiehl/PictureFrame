@@ -1,0 +1,117 @@
+# To get ImageTk with Python3
+# sudo apt-get install python3-pil.imagetk
+
+import tkinter as tk
+from PIL import ImageTk,Image  
+
+# 1080x1920
+# /2 = 540x960
+# /4 = 270x480
+
+"""NOTES: 
+- Should we just convert images to RGBA as soon as we open them? Any reason not to?
+- Play with thumbail (i.e. resize) function. Make sure quality is what we expect
+
+"""
+
+# Constants
+DISPLAY_W = 480
+DISPLAY_H = 270
+
+# Globals
+current_img = None
+alpha = 0
+
+def toggle_fs(dummy=None):
+    state = False if root.attributes('-fullscreen') else True
+    root.attributes('-fullscreen', state)
+    if not state:
+        root.geometry('{}x{}}+100+100'.format(str(DISPLAY_W), str(DISPLAY_H)))
+
+def img_update(dummy=None):
+    print("Updating img")
+    global current_img
+    img = Image.open("test.jpg")
+    img = resize_image(img, (DISPLAY_W, DISPLAY_H))
+    current_img = ImageTk.PhotoImage(img) 
+    canvas.itemconfig(img_container, image=current_img)
+
+def img_transition(dummy=None):
+    # https://pillow.readthedocs.io/en/stable/reference/Image.html
+    global alpha
+    img1 = Image.open("test.png")
+    img1 = resize_image(img1, (DISPLAY_W, DISPLAY_H))
+    img1 = img1.convert("RGBA")
+
+    img2 = Image.open("test.jpg")
+    img2 = resize_image(img2, (DISPLAY_W, DISPLAY_H))
+    img2 = img2.convert("RGBA") # TODO - necessary?
+
+    img = Image.blend(img1, img2, alpha)
+    alpha += 0.2
+
+    current_img = ImageTk.PhotoImage(img) 
+    canvas.itemconfig(img_container, image=current_img)
+
+    # Error - Images not the same size. Need to add black background of common 
+    # size and then transition
+
+def resize_image(img, size):
+    img.thumbnail(size,Image.ANTIALIAS)
+    return img
+
+def open_image(filename):
+    img = Image.open("test.png")
+    
+
+root = tk.Tk()  
+canvas = tk.Canvas(root, bg='black', highlightthickness=0, width=DISPLAY_W, height=DISPLAY_H)  
+canvas.pack(fill=tk.BOTH, expand=True) # configure canvas to occupy the whole main window
+
+#root.attributes('-fullscreen', True) # make main window full-screen
+root.bind('<Escape>', toggle_fs)
+root.bind('n', img_update)
+root.bind('t', img_transition)
+
+root.config(cursor="none")
+
+img = Image.open("test.png")
+img = resize_image(img, (DISPLAY_W, DISPLAY_H))
+
+#%% Adding text
+# https://pillow.readthedocs.io/en/stable/reference/ImageDraw.html
+img = img.convert("RGBA")
+from PIL import ImageDraw, ImageFont
+# make a blank image for the text, initialized to transparent text color
+txt = Image.new("RGBA", img.size, (255, 255, 255, 0))
+# get a font
+fnt = ImageFont.truetype("Pillow/Tests/fonts/FreeMono.ttf", 40)
+# get a drawing context
+d = ImageDraw.Draw(txt)
+# draw text, half opacity
+d.text((10, 10), "Hello", font=fnt, fill=(0,0,0, 128))
+# draw text, full opacity
+d.text((10, 60), "World", font=fnt, fill=(0,0,0, 255))
+
+img = Image.alpha_composite(img, txt)
+
+
+#%%
+
+current_img = ImageTk.PhotoImage(img)  
+img_container = canvas.create_image(0,0, anchor=tk.NW, image=current_img) 
+
+if 1:
+    #root.after(1000, img_update)
+    pass
+else:
+    from tkinter import ttk
+    button= ttk.Button(root, text="Update", command=lambda:img_update())
+    button.pack()
+
+
+
+
+
+root.mainloop() 
+

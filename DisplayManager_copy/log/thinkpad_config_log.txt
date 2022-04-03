@@ -1,0 +1,22 @@
+2022-04-02 15:45:28,465 [MainThread  ] [INFO ]  Main start...
+2022-04-02 15:45:28,690 [MainThread  ] [INFO ]  Image root /home/diehl/Pictures loaded in 0.2 sec: 
+2022-04-02 15:45:28,690 [MainThread  ] [INFO ]  
+============ Image Database ============
+- Number of roots in db: 1
+- Folders in db: 10
+
+Root 1 at: /home/diehl/Pictures
+Num folders: 10, Num Pictures: 320
+------------------------------
+Pictures, Pics: 301, Date Score: nan 
+   Wallpapers, Pics: 1, Date Score: nan 
+   Sub1, Pics: 7, Date Score: nan 
+      temp, Pics: 0, Date Score: nan 
+         Sub2, Pics: 6, Date Score: nan 
+            test, Pics: 0, Date Score: nan 
+   Icons, Pics: 3, Date Score: nan 
+   Other_2020, Pics: 0, Date Score: nan 
+   practice, Pics: 2, Date Score: nan 
+      test, Pics: 0, Date Score: nan 
+========================================
+2022-04-02 15:45:28,712 [MainThread  ] [INFO ]  Next playing: /home/diehl/Pictures/Sub1/temp/Sub2, pic: AA274HW2P3_5.png (5)

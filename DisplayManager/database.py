@@ -41,29 +41,9 @@ Where (Image Tuple) = (Filename, Rotation, Date, etc) (Maybe a named tuple)
 * By date = Return list of (Directory_Name, Date_Score) and sort by Date_Score
 * Within a playlist, can sort Image tuples according to filename, date, or randomize
 * Completely randomize images = randomly select playlist, randomly select image.
-
-Issue - How to get full path name? Have parent name consist of the full path to 
-that point? Additional element with path to parent? Construct path by following 
-up to root?
-
-
-Notes on image formats:
-* JPEG: Best supported format. JPEG is very common, well supported, and contains
-  exif data (thus containing date information)
-* PNG: Supported. Generally doesn't come with exif data, so date information
-  is not extracted. May have metadata, but reading of this is not implemented.
-* HEIC: Newer format. Images are typically converted to JPEG when downloaded from
-  phones/iCloud/Google Photos, so dealing with these images will likely not be 
-  encountered unless connecting directly to these services. Pretty sure this
-  format comes with lots of exif/metadata, but not sure how to read it.
-
-
-
-  TODO - How to supplement Image_Database to handle SmugMug pictures???
-  More generic interface???
-  TODO - See if I can implement iterator(s) for Image_Database object
+  
+TODO - See if I can implement iterator(s) for Image_Database object
 """
-
 
 # Global variables to make handling exif data easier
 EXIF_DATE = None 
@@ -73,7 +53,6 @@ for k in ExifTags.TAGS:
     EXIF_DATE = k
   elif ExifTags.TAGS[k] == 'Orientation':
     EXIF_ORIENTATION = k
-
 
 def isnan(num):
     """If an item does not equal itself, then it is a NaN"""
@@ -104,28 +83,27 @@ class Image_Database(dict):
     can hold multiple data trees, and tree roots are stored in self.roots. Each
     tree represent a different image filesystem (e.g. local Pictures directory, 
     external storage directory, directory tied to cloud storage, etc)"""
+
     def __init__(self):
         self.roots = []
 
     def add_directory(self, directory):
         """Given a full directory path, create a new Image_Directory object 
         and add it to the dict. If a directory has no images, Image_Directory 
-        object will have zero length images list"""
+        object will have a zero length images list"""
 
-        # Skip over ignore directory
-        if 'ignore' not in directory.lower():
-            # Make sure we have been given a real directory
-            if os.path.isdir(directory):
-                img_dir = Image_Directory(directory)
+        # Make sure we have been given a real directory
+        if os.path.isdir(directory):
+            img_dir = Image_Directory(os.path.abspath(directory))
 
-                # Only add the directory to the database if it has images in it (???)
-                #if img_dir.images_present:
+            # Only add the directory to the database if it has images in it (???)
+            #if img_dir.images_present:
 
-                # To ensure that all keys are unique, use the full path as the key
-                self.__setitem__(directory, img_dir)
-            else:
-                #TODO - Work on better error handling than this
-                raise ValueError("Not a directory: " + directory)
+            # To ensure that all keys are unique, use the full path as the key
+            self.__setitem__(directory, img_dir)
+        else:
+            #TODO - Work on better error handling than this
+            raise ValueError("Not a directory: " + directory)
 
     def remove_directory(self, directory):
         """Remove the given directory and all child directories from the database"""
@@ -180,7 +158,6 @@ class Image_Directory():
     directory, child directories, etc. Acts as a node in a branching tree data 
     structure"""
     def __init__(self, path):
-        
         if os.path.isdir(path):
             self.path = path
             self.name = os.path.basename(path)

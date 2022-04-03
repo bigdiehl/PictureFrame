@@ -1,0 +1,43 @@
+
+"""
+===== ========================================== ==== ==
+    vec3  description                                python
+    ----- ------------------------------------------ -------
+    index                                            from to
+    ===== ========================================== ==== ==
+       0  location                                     0   2
+       1  rotation                                     3   5
+       2  scale                                        6   8
+       3  offset                                       9  11
+       4  fog shade                                   12  14
+       5  fog distance, fog alpha, shape alpha        15  17
+       6  camera position                             18  20
+       7  point light if 1: light0, light1, unused    21  23
+       8  light0 position, direction vector           24  26
+       9  light0 strength per shade                   27  29
+      10  light0 ambient values                       30  32
+      11  light1 position, direction vector           33  35
+      12  light1 strength per shade                   36  38
+      13  light1 ambient values                       39  41
+      14  defocus dist_from, dist_to, amount          42  44 # also 2D x, y
+      15  defocus frame width, height (only 2 used)   45  46 # also 2D w, h, tot_ht
+      16  custom data space                           48  50
+      17  custom data space                           51  53
+      18  custom data space                           54  56
+      19  custom data space                           57  59
+    ===== ========================================== ==== ==
+    """
+
+Notes on image formats:
+* JPEG: Best supported format. JPEG is very common, well supported, and contains
+  exif data (thus containing date information)
+* PNG: Supported. Generally doesn't come with exif data, so date information
+  is not extracted. May have metadata, but reading of this is not implemented.
+* HEIC: Newer format. Images are typically converted to JPEG when downloaded from
+  phones/iCloud/Google Photos, so dealing with these images will likely not be 
+  encountered unless connecting directly to these services. Pretty sure this
+  format comes with lots of exif/metadata, but not sure how to read it.
+
+
+
+TODO - How to supplement Image_Database to handle SmugMug pictures??? More generic interface???

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+
+<style>
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  background-color: #ffffff;
+  border: 2px solid #777777;
+  padding: 10px;
+  border-radius: 25px;
+  width: 630px;
+  height: auto;
+  margin: auto; 
+}
+
+.control-button {
+  width: 120px;
+  height: auto;
+  border-radius: 50%
+}
+
+.rotate180 {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+</style>
+
+<nav class="navbar navbar-expand-md">
+  <a class="navbar-brand" href="pics/pic_frame.svg">Picture Frame</a>
+  <img src="pics/pic_frame.svg" width="80px" height="auto" />
+  <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="main-navigation">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+          <a class="nav-link" href="#">Frame Controls</a>
+      </li>
+      <li class="nav-item">
+         <a class="nav-link" href="#">Playlist Settings</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="general_settings.html">General Settings</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<br>
+
+
+<br><h1> Frame Controls </h1>
+
+<div class="grid-container">
+  <input type="image" id="first-pic-button" class="control-button rotate180" src="pics/last_picture_button.svg" alt="Err">
+  <input type="image" id="prev-pic-button" class="control-button rotate180" src="pics/next_picture_button.svg" alt="Err">
+  <input type="image" id="play-button" class="control-button hover-shadow" src="pics/play_button.svg" alt="Err">
+  <input type="image" id="next-pic-button" class="control-button" src="pics/next_picture_button.svg" alt="Err"> 
+  <input type="image" id="last-pic-button" class="control-button" src="pics/last_picture_button.svg" alt="Err"> 
+</div>
+
+
+<br><h1> Built-in Playlists </h1>
+<br>
+Enjoy some complementary playlists. Click on the buttons below to start a specially (?) curated collection of images. (tasteful)
+<br>
+Temple button, superhero button, mountain button, snooty artist button, etc (Just controls to trigger certain pictures/playlists). Can include some nice playlists of temples, nature scenes, etc as part my gift. Can use up part of that 32GB on the SD card.
+<br><br>
+
+<div class="grid-container">
+  <input type="image" id="first-pic-button" class="control-button rotate180" src="pics/last_picture_button.svg" alt="Err">
+  <input type="image" id="prev-pic-button" class="control-button" src="pics/jet_button.svg" alt="Err">
+  <input type="image" id="play-button" class="control-button" src="pics/temple_button.svg" alt="Err">
+  <input type="image" id="next-pic-button" class="control-button" src="pics/mountain_button.svg" alt="Err"> 
+  <input type="image" id="last-pic-button" class="control-button" src="pics/nuke_button.svg" alt="Err"> 
+</div>
+
+<br>
+<br>
+<div>
+  <img class="control-button hover-shadow" src="pics/nuke_button.svg" />
+</div>
+<br>
+<br>
+
+<script>
+
+
+</script>
+
+</body>

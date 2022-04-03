@@ -1,0 +1,42 @@
+You have selected
+	/media/diehl/Elements/==DIEHL FAMILY PHOTOS
+as the source directory and 
+	/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS
+as the destination directory. Continue?: 
+Commencing file transfer...
+
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/1990/1990 (52a).JPG" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/1990/1990 (52a).JPG"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/1996/1996 (9).JPG" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/1996/1996 (9).JPG"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2002/6-June/June (53).jpg" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2002/6-June/June (53).jpg"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2002/6-June/June (54).jpg" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2002/6-June/June (54).jpg"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2002/6-June/June (55).jpg" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2002/6-June/June (55).jpg"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2004/12-December/December (17).jpg" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2004/12-December/December (17).jpg"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2004/12-December/December (13).jpg" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2004/12-December/December (13).jpg"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2004/12-December/December (14).jpg" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2004/12-December/December (14).jpg"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2004/12-December/December (15).jpg" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2004/12-December/December (15).jpg"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2004/12-December/December (16).jpg" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2004/12-December/December (16).jpg"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2004/12-December/December (18).jpg" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2004/12-December/December (18).jpg"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2004/12-December/December (19).jpg" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2004/12-December/December (19).jpg"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2004/3-March 2004/Visit to Meridian (12).jpg" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2004/3-March 2004/Visit to Meridian (12).jpg"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2004/3-March 2004/Visit to Meridian (13).jpg" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2004/3-March 2004/Visit to Meridian (13).jpg"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2004/3-March 2004/Visit to Meridian (11).jpg" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2004/3-March 2004/Visit to Meridian (11).jpg"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2004/3-March 2004/Visit to Meridian (1).jpg" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2004/3-March 2004/Visit to Meridian (1).jpg"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2004/3-March 2004/Visit to Meridian (10).jpg" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2004/3-March 2004/Visit to Meridian (10).jpg"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2004/3-March 2004/Visit to Meridian (10a).jpg" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2004/3-March 2004/Visit to Meridian (10a).jpg"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2006/10-October 2006/October 2006 (60).JPG" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2006/10-October 2006/October 2006 (60).JPG"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2006/10-October 2006/October 2006 (61).JPG" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2006/10-October 2006/October 2006 (61).JPG"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2007/6-June 2007/June 2007 (90).jpg" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2007/6-June 2007/June 2007 (90).jpg"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2007/6-June 2007/June 2007 (91).jpg" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2007/6-June 2007/June 2007 (91).jpg"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2007/6-June 2007/June 2007 (92).jpg" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2007/6-June 2007/June 2007 (92).jpg"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2007/6-June 2007/June 2007 (93).jpg" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2007/6-June 2007/June 2007 (93).jpg"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2007/6-June 2007/June 2007 (94).jpg" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2007/6-June 2007/June 2007 (94).jpg"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2007/6-June 2007/June 2007 (95).jpg" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2007/6-June 2007/June 2007 (95).jpg"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2007/6-June 2007/June 2007 (96).jpg" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2007/6-June 2007/June 2007 (96).jpg"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2007/6-June 2007/June 2007 (97).jpg" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2007/6-June 2007/June 2007 (97).jpg"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2007/6-June 2007/June 2007 (98).jpg" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2007/6-June 2007/June 2007 (98).jpg"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2007/6-June 2007/June 2007 (99).jpg" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2007/6-June 2007/June 2007 (99).jpg"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2009/7-July/IMG_5681.JPG" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2009/7-July/IMG_5681.JPG"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2009/7-July/IMG_5682.JPG" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2009/7-July/IMG_5682.JPG"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2009/7-July/IMG_5684.JPG" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2009/7-July/IMG_5684.JPG"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2009/7-July/IMG_5685.JPG" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2009/7-July/IMG_5685.JPG"' returned non-zero exit status 1
+Command 'convert "/media/diehl/Elements/==DIEHL FAMILY PHOTOS/2009/7-July/IMG_5687.JPG" -resize 1920x1080 "/media/diehl/0FA1B45A37DE0673/__DIEHL_FAMILY_PHOTOS/2009/7-July/IMG_5687.JPG"' returned non-zero exit status 1
